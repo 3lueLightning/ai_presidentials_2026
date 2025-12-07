@@ -1,0 +1,62 @@
+[project]
+name = "ai-presidentials-2026"
+version = "0.1.0"
+description = "AI Presidentials 2026"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "loguru>=0.7.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "ruff>=0.1.0",
+    "bandit[toml]>=1.7.0",
+    "pre-commit>=3.0.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.ruff]
+# Enable pyproject.toml support
+extend-include = ["pyproject.toml"]
+# Line length matching Black's default
+line-length = 88
+target-version = "py311"
+
+[tool.ruff.lint]
+# Enable all rules
+select = ["E", "F", "I", "N", "W", "UP", "B", "C4", "DTZ", "T10", "EM", "ISC", "ICN", "PIE", "T20", "PYI", "PT", "Q", "RSE", "RET", "SIM", "ARG", "PTH", "ERA", "PD", "PGH", "PL", "TRY", "NPY", "RUF"]
+ignore = []
+
+[tool.ruff.lint.isort]
+known-first-party = ["ai_presidentials_2026"]
+
+[tool.ruff.format]
+# Use double quotes for strings
+quote-style = "double"
+# Indent with spaces, rather than tabs
+indent-style = "space"
+# Respect magic trailing commas
+skip-magic-trailing-comma = false
+# Automatically detect the appropriate line ending
+line-ending = "auto"
+# Black-like formatting
+docstring-code-format = true
+docstring-code-line-length = "dynamic"
+
+[tool.bandit]
+exclude_dirs = ["tests", "test_*.py", "*_test.py"]
+skips = ["B101"]  # Skip assert_used test
+
+[tool.bandit.assert_used]
+skips = ["*/test_*.py", "*/tests/*"]
+
+[tool.bandit.baseline]
+# Path to a baseline file
+# baseline = ".bandit.baseline"
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["F401"]  # Allow unused imports in __init__.py
