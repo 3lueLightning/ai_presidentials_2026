@@ -83,3 +83,7 @@ dmypy.json
 # OS
 .DS_Store
 Thumbs.db
+
+# CDK asset staging directory
+.cdk.staging
+cdk.out

@@ -12,7 +12,7 @@ format: ## Format code with Ruff
 	uv run ruff format .
 
 lint: ## Lint code with Ruff
-	uv run ruff check .
+	uv run ruff check . --fix
 
 security: ## Run security checks with Bandit
 	uv run bandit -r src/

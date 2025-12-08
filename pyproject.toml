@@ -6,6 +6,9 @@ readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
     "loguru>=0.7.0",
+    # CDK
+    "aws-cdk-lib==2.215.0",
+    "constructs>=10.0.0,<11.0.0",
 ]
 
 [project.optional-dependencies]
@@ -13,6 +16,7 @@ dev = [
     "ruff>=0.1.0",
     "bandit[toml]>=1.7.0",
     "pre-commit>=3.0.0",
+    "pytest==8.4.2",
 ]
 
 [build-system]
@@ -29,7 +33,7 @@ target-version = "py311"
 [tool.ruff.lint]
 # Enable all rules
 select = ["E", "F", "I", "N", "W", "UP", "B", "C4", "DTZ", "T10", "EM", "ISC", "ICN", "PIE", "T20", "PYI", "PT", "Q", "RSE", "RET", "SIM", "ARG", "PTH", "ERA", "PD", "PGH", "PL", "TRY", "NPY", "RUF"]
-ignore = []
+ignore = ["ERA001"]
 
 [tool.ruff.lint.isort]
 known-first-party = ["ai_presidentials_2026"]
@@ -55,6 +59,11 @@ skips = ["B101"]  # Skip assert_used test
 skips = ["*/test_*.py", "*/tests/*"]
 
 [tool.bandit.baseline]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.4.2",
+]
 # Path to a baseline file
 # baseline = ".bandit.baseline"
 
